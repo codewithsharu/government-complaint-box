@@ -51,11 +51,14 @@ app.post('/login', (req, res) => {
         if (result.length === 0) {
             res.send('Invalid email or password');
         } else {
-            req.session.email = email; // Store email in session
-            res.redirect('/dashboard'); // Redirect to dashboard after successful login
+            const ac_id = result[0].ac_id;
+            req.session.email = email;
+            req.session.ac_id = ac_id;
+            res.redirect('/dashboard');
         }
     });
 });
+
 
 app.post('/register', (req, res) => {
     const { email, password } = req.body;
@@ -73,7 +76,7 @@ app.post('/register', (req, res) => {
                     throw err;
                 }
                 console.log('User registered successfully');
-                req.session.email = email; // Store email in session
+                
                 res.send(`Registration successful. You are now logged in as ${email}.`);
             });
         }
@@ -97,12 +100,13 @@ app.post('/submitComplaint', (req, res) => {
 
 // Route to render dashboard page
 app.get('/dashboard', (req, res) => {
-    const email = req.session.email; // Retrieve email from session
+    const email = req.session.email;
+    const ac_id = req.session.ac_id; 
     if (!email) {
         res.redirect('/'); // Redirect to login if session email is not set
     } else {
         // Render dashboard with email
-        res.render('dashboard', { email });
+        res.render('dashboard', { email,ac_id });
     }
 });
 
@@ -127,4 +131,21 @@ app.get('/logout', (req, res) => {
 // Start the server
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
+});
+
+
+app.get('/uc', (req, res) => {
+    const userEmail = req.session.email; 
+  
+    const selectQuery = 'SELECT * FROM complaints WHERE email = ?';
+    
+
+    db.query(selectQuery, [userEmail], (err, results) => {
+        if (err) {
+            throw err;
+        }
+        
+     
+        res.render('yourcomplaints', { complaints: results });
+    });
 });
