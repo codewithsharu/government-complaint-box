@@ -53,11 +53,12 @@
         
         <% if (complaints.length > 0) { %>
             <ul>
-                <% complaints.forEach(complaint => { %>
+                <% complaints.forEach(i => { %>
                     <li>
-                        <strong>Complaint Type:</strong> <%= complaint.complaintType %><br>
-                        <strong>Reference ID:</strong> <%= complaint.referenceID %><br>
-                        <strong>Description:</strong> <%= complaint.complaintMessage %><br>
+                        <strong>Complaint Type:</strong> <%= i.complaintType %><br>
+                        <strong>Reference ID:</strong> <%= i.referenceID %><br>
+                        <strong>Description:</strong> <%= i.complaintMessage %><br>
+                        <strong>STATUS :</strong> <%= i.status %><br>
                     </li>
                 <% }); %>
             </ul>
