@@ -1,11 +1,79 @@
-
-<!--forms.ejs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Complaint Submission</title>
+    <style>
+        body {
+            background-color: #181818; /* Dark background */
+            color: #fff; /* Light text */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        form {
+            width: 50%;
+            max-width: 500px;
+            padding: 20px;
+            background-color: #212121; /* Darker background for form */
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+        }
+
+        label {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #333; /* Dark input background */
+            color: #fff; /* Light text */
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #333; /* Dark select background */
+            color: #fff; /* Light text */
+        }
+
+        button[type="submit"] {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50; /* Green submit button */
+            color: #fff; /* Light text */
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #8BC34A; /* Darker green on hover */
+        }
+    </style>
 </head>
 <body>
     <h2>Submit a Complaint</h2>
@@ -13,9 +81,9 @@
         <input type="hidden" id="email" name="email" value="<%= email %>">
         <label for="complaintType">Complaint Type:</label>
         <select id="complaintType" name="complaintType">
-            <option value="road">road</option>
-            <option value="water">water</option>
-            <option value="dry">dryy</option>
+            <option value="road">Road</option>
+            <option value="water">Water</option>
+            <option value="dry">Dry</option>
             <!-- Add more options as needed -->
         </select><br><br>
         <label for="name">Name:</label>
